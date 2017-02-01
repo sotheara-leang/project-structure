@@ -1,14 +1,14 @@
 package com.example.structure.constant;
 
-import com.example.structure.base.exception.BusinessError;
+import com.example.structure.base.exception.ErrorCode;
 
-public enum ErrorCode implements BusinessError<ErrorCode> {
+public enum BusinessError implements ErrorCode<BusinessError> {
 	
 	ROL100,
 	USR100;
 	
 	@Override
-	public ErrorCode getCode() {
+	public BusinessError getCode() {
 		return this;
 	}
 
