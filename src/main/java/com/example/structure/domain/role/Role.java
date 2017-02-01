@@ -2,12 +2,15 @@ package com.example.structure.domain.role;
 
 import javax.validation.constraints.Size;
 
+import com.example.structure.base.domain.AuditEntity;
+import com.example.structure.domain.user.User;
+
 /**
  * 
  * @author sotheara.leang
  *
  */
-public class Role {
+public class Role extends AuditEntity<Integer, User> {
 
 	private Integer id;
 	

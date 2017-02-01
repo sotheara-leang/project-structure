@@ -24,15 +24,19 @@ import com.example.structure.base.domain.Identifiable;
  *
  */
 @Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
-public abstract class AuditorInterceptor<Auditor extends Identifiable<?>> implements Interceptor {
+public class AuditorInterceptor<ID, Auditor extends Identifiable<ID>> implements Interceptor {
+	
+	protected AuditorAware<Auditor> auditorAware;
+	
+	public AuditorInterceptor(AuditorAware<Auditor> auditorAware) {
+		this.auditorAware = auditorAware;
+	}
 	
 	public Object plugin(Object target) {
 		return Plugin.wrap(target, this);
 	}
 	
-	public void setProperties(Properties properties) {
-		
-	}
+	public void setProperties(Properties properties) {}
 	
 	@SuppressWarnings("unchecked")
 	public Object intercept(Invocation invocation) throws Throwable {
@@ -45,35 +49,34 @@ public abstract class AuditorInterceptor<Auditor extends Identifiable<?>> implem
 			StrictMap<?> map = (StrictMap<?>) object;
 			List<Object> list = (List<Object>) map.get("list");
 			
-			initAuditorWithList(sqlCommandType, list);
+			initFieldWithList(sqlCommandType, list);
 			
 		} else {
-			initAuditor(sqlCommandType, (Auditable<?, ?>) object);
+			initField(sqlCommandType, (Auditable<?, ?>) object);
 		}
 
 		return invocation.proceed();
 	}
 	
-	public void initAuditorWithList(SqlCommandType action, List<Object> list) {
+	public void initFieldWithList(SqlCommandType action, List<Object> list) {
 		for (Object object : list) {
-			initAuditor(action, object);
+			initField(action, object);
 		}
 	}
 	
-	public void initAuditor(SqlCommandType action, Object object) {
+	public void initField(SqlCommandType action, Object object) {
 		if (action == SqlCommandType.INSERT) {
 			onCreate(object);
 			
 		} else if (action == SqlCommandType.UPDATE) {
 			onUpdate(object);
-			
 		}
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void onCreate(Object object) {
 		if (object instanceof Auditable) {
-			Auditor auditor = getAuditor();
+			Auditor auditor = auditorAware.getCurrentAuditor();
 			
 			Auditable target = (Auditable) object;
 			target.setCreateDate(new Date());
@@ -84,13 +87,11 @@ public abstract class AuditorInterceptor<Auditor extends Identifiable<?>> implem
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void onUpdate(Object object) {
 		if (object instanceof Auditable) {
-			Auditor auditor = getAuditor();
+			Auditor auditor = auditorAware.getCurrentAuditor();
 			
 			Auditable target = (Auditable) object;
 			target.setUpdateDate(new Date());
 			target.setUpdater(auditor);
 		}
 	}
-	
-	public abstract Auditor getAuditor();
 }
