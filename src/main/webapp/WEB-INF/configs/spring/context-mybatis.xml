@@ -31,6 +31,12 @@
 	
 	<bean id="auditorIntercepter" class="com.example.structure.frmk.tool.mybatis.AuditorInterceptor">
 		<constructor-arg index="0">
+			<ref bean="auditHandler"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="auditHandler" class="com.example.structure.frmk.tool.mybatis.AuditHandler">
+		<constructor-arg index="0">
 			<ref bean="auditorAware"/>
 		</constructor-arg>
 	</bean>

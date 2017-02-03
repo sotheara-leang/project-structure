@@ -1,6 +1,5 @@
 package com.example.structure.frmk.tool.mybatis;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -14,6 +13,7 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.defaults.DefaultSqlSession;
 import org.apache.ibatis.session.defaults.DefaultSqlSession.StrictMap;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.structure.frmk.domain.Auditable;
 import com.example.structure.frmk.domain.Identifiable;
@@ -26,10 +26,11 @@ import com.example.structure.frmk.domain.Identifiable;
 @Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
 public class AuditorInterceptor<ID, Auditor extends Identifiable<ID>> implements Interceptor {
 	
-	protected AuditorAware<Auditor> auditorAware;
+	private AuditHandler<ID, Auditor> auditHandler;
 	
-	public AuditorInterceptor(AuditorAware<Auditor> auditorAware) {
-		this.auditorAware = auditorAware;
+	@Autowired
+	public AuditorInterceptor(AuditHandler<ID, Auditor> auditHandler) {
+		this.auditHandler = auditHandler;
 	}
 	
 	public Object plugin(Object target) {
@@ -65,33 +66,11 @@ public class AuditorInterceptor<ID, Auditor extends Identifiable<ID>> implements
 	}
 	
 	public void initField(SqlCommandType action, Object object) {
-		if (action == SqlCommandType.INSERT) {
-			onCreate(object);
-			
-		} else if (action == SqlCommandType.UPDATE) {
-			onUpdate(object);
-		}
-	}
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void onCreate(Object object) {
-		if (object instanceof Auditable) {
-			Auditor auditor = auditorAware.getCurrentAuditor();
-			
-			Auditable target = (Auditable) object;
-			target.setCreateDate(new Date());
-			target.setCreator(auditor);
-		}
-	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void onUpdate(Object object) {
-		if (object instanceof Auditable) {
-			Auditor auditor = auditorAware.getCurrentAuditor();
-			
-			Auditable target = (Auditable) object;
-			target.setUpdateDate(new Date());
-			target.setUpdater(auditor);
+		switch (action) {
+		case INSERT: auditHandler.beforeCreate(object); break;
+		case UPDATE: auditHandler.beforeUpdate(object); break;
+		case DELETE: auditHandler.beforeDelete(object); break;
+		default: break;
 		}
 	}
 }
