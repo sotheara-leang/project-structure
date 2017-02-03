@@ -1,4 +1,4 @@
-package com.example.structure.constant;
+package com.example.structure.base.constant;
 
 import com.example.structure.frmk.exception.ErrorCode;
 
