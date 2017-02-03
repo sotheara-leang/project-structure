@@ -1,8 +1,8 @@
-package com.example.structure.tool.mybatis;
+package com.example.structure.base.mybatis;
 
 import com.example.structure.domain.user.User;
 
-public class AuditorAware implements com.example.structure.base.tool.mybatis.AuditorAware<User> {
+public class AuditorAware implements com.example.structure.frmk.tool.mybatis.AuditorAware<User> {
 
 	@Override
 	public User getCurrentAuditor() {

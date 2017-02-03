@@ -1,4 +1,4 @@
-package com.example.structure.base.util;
+package com.example.structure.frmk.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

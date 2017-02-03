@@ -1,8 +1,8 @@
-package com.example.structure.base.web.message.error;
+package com.example.structure.frmk.web.message.error;
 
 import org.springframework.http.HttpStatus;
 
-import com.example.structure.base.exception.ErrorCode;
+import com.example.structure.frmk.exception.ErrorCode;
 
 public class ErrorMessageBuilder {
 

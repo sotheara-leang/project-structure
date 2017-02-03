@@ -1,4 +1,4 @@
-package com.example.structure.base.domain;
+package com.example.structure.frmk.domain;
 
 public interface Identifiable<ID> {
 

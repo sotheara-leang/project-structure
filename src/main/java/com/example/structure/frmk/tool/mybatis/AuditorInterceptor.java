@@ -1,4 +1,4 @@
-package com.example.structure.base.tool.mybatis;
+package com.example.structure.frmk.tool.mybatis;
 
 import java.util.Date;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.defaults.DefaultSqlSession;
 import org.apache.ibatis.session.defaults.DefaultSqlSession.StrictMap;
 
-import com.example.structure.base.domain.Auditable;
-import com.example.structure.base.domain.Identifiable;
+import com.example.structure.frmk.domain.Auditable;
+import com.example.structure.frmk.domain.Identifiable;
 
 /**
  * 

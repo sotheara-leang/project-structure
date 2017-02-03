@@ -1,10 +1,10 @@
-package com.example.structure.base.web.message.error.form;
+package com.example.structure.frmk.web.message.error.form;
 
 import java.util.Collections;
 import java.util.List;
 
-import com.example.structure.base.web.WebErorCode;
-import com.example.structure.base.web.message.error.ErrorMessage;
+import com.example.structure.frmk.web.WebErorCode;
+import com.example.structure.frmk.web.message.error.ErrorMessage;
 
 public class FormError extends ErrorMessage {
 

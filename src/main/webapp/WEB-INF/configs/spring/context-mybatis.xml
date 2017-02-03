@@ -29,13 +29,13 @@
 		</property>
 	</bean>
 	
-	<bean id="auditorIntercepter" class="com.example.structure.base.tool.mybatis.AuditorInterceptor">
+	<bean id="auditorIntercepter" class="com.example.structure.frmk.tool.mybatis.AuditorInterceptor">
 		<constructor-arg index="0">
 			<ref bean="auditorAware"/>
 		</constructor-arg>
 	</bean>
 	
-	<bean id="auditorAware" class="com.example.structure.tool.mybatis.AuditorAware" />
+	<bean id="auditorAware" class="com.example.structure.base.mybatis.AuditorAware" />
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.example.structure.dao" />

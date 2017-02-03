@@ -1,4 +1,4 @@
-package com.example.structure.base.tool.mybatis;
+package com.example.structure.frmk.tool.mybatis;
 
 public interface AuditorAware<T> {
 

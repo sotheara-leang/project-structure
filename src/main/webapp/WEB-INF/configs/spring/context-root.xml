@@ -30,7 +30,7 @@
 	
 	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
 	
-	<bean class="com.example.structure.base.util.SpringBeanHolder" />
+	<bean class="com.example.structure.frmk.util.SpringBeanHolder" />
 	
 	<context:component-scan base-package="com.example.structure">
 		<context:exclude-filter type="aspectj" expression="com.example.structure.web.*" />

@@ -1,6 +1,6 @@
-package com.example.structure.base.exception;
+package com.example.structure.frmk.exception;
 
-import com.example.structure.base.util.MessageUtils;
+import com.example.structure.frmk.util.MessageUtils;
 
 /**
  * 

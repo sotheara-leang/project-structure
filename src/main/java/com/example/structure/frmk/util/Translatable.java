@@ -1,4 +1,4 @@
-package com.example.structure.base.util;
+package com.example.structure.frmk.util;
 
 public interface Translatable {
 

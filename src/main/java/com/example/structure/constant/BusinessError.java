@@ -1,6 +1,6 @@
 package com.example.structure.constant;
 
-import com.example.structure.base.exception.ErrorCode;
+import com.example.structure.frmk.exception.ErrorCode;
 
 public enum BusinessError implements ErrorCode<BusinessError> {
 	

@@ -2,8 +2,8 @@ package com.example.structure.domain.user;
 
 import javax.validation.constraints.Size;
 
-import com.example.structure.base.domain.AuditEntity;
 import com.example.structure.domain.role.Role;
+import com.example.structure.frmk.domain.AuditEntity;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package com.example.structure.base.web.message.error.form;
+package com.example.structure.frmk.web.message.error.form;
 
 public class FieldError {
 

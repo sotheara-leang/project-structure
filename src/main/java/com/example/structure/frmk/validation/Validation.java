@@ -1,4 +1,4 @@
-package com.example.structure.base.validator;
+package com.example.structure.frmk.validation;
 
 public interface Validation {
 

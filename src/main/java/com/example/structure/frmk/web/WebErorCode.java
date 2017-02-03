@@ -1,6 +1,6 @@
-package com.example.structure.base.web;
+package com.example.structure.frmk.web;
 
-import com.example.structure.base.exception.ErrorCode;
+import com.example.structure.frmk.exception.ErrorCode;
 
 public enum WebErorCode implements ErrorCode<WebErorCode>{
 	
