@@ -1,6 +1,6 @@
 package com.example.structure.frmk.domain;
 
-public class Entity<ID> implements Identifiable<ID> {
+public abstract class Entity<ID> implements Identifiable<ID> {
 
 	private ID id;
 	

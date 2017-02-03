@@ -2,7 +2,7 @@ package com.example.structure.frmk.domain;
 
 import java.util.Date;
 
-public class AuditEntity<ID, Auditor extends Identifiable<ID>> extends Entity<ID> implements Auditable<ID, Auditor> {
+public abstract class AuditEntity<ID, Auditor extends Identifiable<ID>> extends Entity<ID> implements Auditable<ID, Auditor> {
 
 	private Date createDate;
 	private Auditor creator;
