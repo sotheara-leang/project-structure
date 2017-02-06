@@ -11,7 +11,13 @@
 	
 	<context:annotation-config />
 	
-	<context:property-placeholder location="/WEB-INF/configs/config.properties"/>
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyConfigurer">
+		<property name="properties" ref="config" />
+	</bean>
+	
+	<bean id="config" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+  		<property name="location" value="/WEB-INF/configs/config.properties"/>
+	</bean>
 	
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
